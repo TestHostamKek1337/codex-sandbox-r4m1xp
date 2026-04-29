@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Вход в админку{% endblock %}
+
+{% block content %}
+  <section class="admin-auth">
+    <form class="panel form-panel" method="post">
+      <div class="section-heading">
+        <h1>Админка</h1>
+        <p>Минимальный вход по логину и паролю из переменных окружения.</p>
+      </div>
+      <label>
+        <span>Логин</span>
+        <input type="text" name="username" required>
+      </label>
+      <label>
+        <span>Пароль</span>
+        <input type="password" name="password" required>
+      </label>
+      <button class="button button-primary" type="submit">Войти</button>
+    </form>
+  </section>
+{% endblock %}

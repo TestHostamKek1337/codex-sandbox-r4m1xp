@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{% if post %}Редактирование{% else %}Новый пост{% endif %} · {{ site_settings.site_title }}{% endblock %}
+
+{% block content %}
+  <section class="panel form-panel wide-panel">
+    <div class="section-heading">
+      <p class="eyebrow">Editor</p>
+      <h1>{% if post %}Редактирование поста{% else %}Создание поста{% endif %}</h1>
+      <p>Slug генерируется автоматически из заголовка и обновляется при переименовании.</p>
+    </div>
+    <form method="post" class="editor-form">
+      <label>
+        <span>Заголовок</span>
+        <input type="text" name="title" value="{{ post.title if post else '' }}" required>
+      </label>
+      <label>
+        <span>Краткое описание</span>
+        <textarea name="excerpt" rows="3" required>{{ post.excerpt if post else '' }}</textarea>
+      </label>
+      <label>
+        <span>URL обложки</span>
+        <input type="url" name="cover_image" value="{{ post.cover_image if post and post.cover_image else '' }}" placeholder="https://...">
+      </label>
+      <label>
+        <span>Текст поста</span>
+        <textarea name="content" rows="14" required>{{ post.content if post else '' }}</textarea>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="is_published" {% if post and post.is_published %}checked{% endif %}>
+        <span>Опубликовать сразу</span>
+      </label>
+      <div class="form-actions">
+        <button class="button button-primary" type="submit">Сохранить</button>
+        <a class="button" href="{{ url_for('admin.dashboard') }}">Назад</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

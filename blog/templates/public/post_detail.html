@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} · {{ site_settings.site_title }}{% endblock %}
+
+{% block content %}
+  <article class="article-layout">
+    <a class="back-link" href="{{ url_for('public.home') }}">← Back to blog</a>
+    <header class="article-header">
+      <p class="eyebrow">{{ post.created_at.strftime("%d.%m.%Y") }}</p>
+      <h1>{{ post.title }}</h1>
+      <p class="article-excerpt">{{ post.excerpt }}</p>
+    </header>
+
+    {% if post.cover_image %}
+      <img class="article-cover" src="{{ post.cover_image }}" alt="{{ post.title }}">
+    {% endif %}
+
+    <div class="article-body">
+      {% for paragraph in post.content.split('\n') if paragraph.strip() %}
+        <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+  </article>
+{% endblock %}

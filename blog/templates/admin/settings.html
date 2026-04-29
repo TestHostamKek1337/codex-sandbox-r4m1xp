@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Настройки · {{ site_settings.site_title }}{% endblock %}
+
+{% block content %}
+  <section class="panel form-panel wide-panel">
+    <div class="section-heading">
+      <p class="eyebrow">Settings</p>
+      <h1>Настройки блога</h1>
+      <p>Здесь меняются ключевые тексты фронта без редактирования кода.</p>
+    </div>
+    <form method="post" class="editor-form">
+      <label>
+        <span>Название сайта</span>
+        <input type="text" name="site_title" value="{{ site_settings.site_title }}" required>
+      </label>
+      <label>
+        <span>Подзаголовок</span>
+        <input type="text" name="site_tagline" value="{{ site_settings.site_tagline }}" required>
+      </label>
+      <label>
+        <span>Hero title</span>
+        <input type="text" name="hero_title" value="{{ site_settings.hero_title }}" required>
+      </label>
+      <label>
+        <span>Hero text</span>
+        <textarea name="hero_text" rows="4" required>{{ site_settings.hero_text }}</textarea>
+      </label>
+      <div class="form-actions">
+        <button class="button button-primary" type="submit">Сохранить</button>
+        <a class="button" href="{{ url_for('admin.dashboard') }}">Назад</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}
